@@ -88,6 +88,12 @@ public class AIEnemies : MonoBehaviour
                 NMA.acceleration = 50;
                 NMA.speed = 150;
                 NMA.SetDestination(player.transform.position);
+
+            }
+            if (ChaseMd == false)
+            {
+                Mode = 3;
+                Invoke("WaitTime", 0.5f);
             }
         }
         else
@@ -113,8 +119,7 @@ public class AIEnemies : MonoBehaviour
         {
             if (RoamMd == true)
             {
-                int d = Random.Range(0, wps.Length);
-                NMA.SetDestination(wps[d].transform.position);
+                NMA.SetDestination(-player.transform.position);
             }
 
         }
@@ -133,8 +138,7 @@ public class AIEnemies : MonoBehaviour
         {
             if (RoamMd == true)
             {
-                int d = Random.Range(0, wps.Length);
-                NMA.SetDestination(wps[d].transform.position);
+                NMA.SetDestination(-player.transform.position);
             }
 
         }
