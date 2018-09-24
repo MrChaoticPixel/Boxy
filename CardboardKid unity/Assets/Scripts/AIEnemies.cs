@@ -18,11 +18,14 @@ public class AIEnemies : MonoBehaviour
     public GameObject Plyr, Self;
     public MeshRenderer SelfMR;
     public Material Red, Blue;
+    public Player playS;
+    
 
 
     // Use this for initialization
     void Start()
     {
+        
         Self = gameObject;
         SelfMR = GetComponent<MeshRenderer>();
         NMA = GetComponent<NavMeshAgent>();
@@ -41,6 +44,10 @@ public class AIEnemies : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (playS.inbox == true)
+        {
+            Physics.IgnoreCollision(GameObject.Find("MainPlayer").GetComponent <CapsuleCollider>(), GetComponent<Collider>());
+        }
         NavMeshHit hit;
         if (!NMA.Raycast(player.position, out hit))
         {
@@ -52,11 +59,13 @@ public class AIEnemies : MonoBehaviour
         }
             if (Mode == 0)
         {
+            chasing = false;
             RoamMd = true;
             ChaseMd = false;
         }
         if (Mode == 1)
         {
+            chasing = true;
             RoamMd = false;
             ChaseMd = true;
         }
@@ -81,10 +90,13 @@ public class AIEnemies : MonoBehaviour
     {
         if (ChaseMd == true)
         {
+            
             SelfMR.material = Red;
             transform.LookAt(player);
+            
             if (playerVis == true)
             {
+                
                 NMA.acceleration = 50;
                 NMA.speed = 150;
                 NMA.SetDestination(player.transform.position);
@@ -92,12 +104,14 @@ public class AIEnemies : MonoBehaviour
             }
             if (ChaseMd == false)
             {
+                
                 Mode = 3;
                 Invoke("WaitTime", 0.5f);
             }
         }
         else
         {
+          
             SelfMR.material = Blue;
             NMA.speed = 60;
             NMA.acceleration = 20;

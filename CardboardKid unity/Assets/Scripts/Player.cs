@@ -12,12 +12,15 @@ public class Player : MonoBehaviour {
     public bool canmov, GamepadMode, KeyboardMode, inbox, canbox, GO;
     public AIEnemies AI1, AI2, AI3, AI4, AI5, AI6, AI7, AI8, AI9, AI10, AI11, AI12;
     public RectTransform playericon;
-
+    public AudioSource Detect, coins;
+    public CapsuleCollider playercol;
 
 
     // Use this for initialization
     void Start ()
     {
+        playercol = GetComponent<CapsuleCollider>();
+        Detect = GetComponent<AudioSource>();
         GO = false;
         canbox = false;
         score = 0;
@@ -75,11 +78,13 @@ public class Player : MonoBehaviour {
                 {
                     if (inbox == false)
                     {
+                        
                         box.SetActive(true);
                         inbox = true;
                     }
                     else
                     {
+                        
                         box.SetActive(false);
                         inbox = false;
                     }
@@ -195,8 +200,142 @@ public class Player : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Collect")
         {
+            coins.Play();
             Destroy(collision.gameObject);
             score = score + 1;
+        }
+        if (collision.gameObject.name == "Boundry1")
+        {
+            if (AI1.playerVis == true)
+            {
+
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry2")
+        {
+            if (AI2.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry3")
+        {
+            if (AI3.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry4")
+        {
+            if (AI4.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry5")
+        {
+            if (AI5.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry6")
+        {
+            if (AI6.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry7")
+        {
+            if (AI7.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry8")
+        {
+            if (AI8.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry9")
+        {
+            if (AI9.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry10")
+        {
+            if (AI10.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry11")
+        {
+            if (AI11.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+
+            }
+        }
+        if (collision.gameObject.name == "Boundry12")
+        {
+            if (AI12.playerVis == true)
+            {
+                if (inbox == false)
+                {
+                    Detect.Play();
+                }
+             
+            }
         }
     }
     public void OnTriggerStay(Collider collision)
