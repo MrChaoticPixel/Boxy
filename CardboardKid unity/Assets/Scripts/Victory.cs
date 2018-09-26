@@ -7,8 +7,10 @@ public class Victory : MonoBehaviour {
     public MeshRenderer VicMesRen;
     public Material closed, open;
     public bool Op, VictoryOn;
-	// Use this for initialization
-	void Start () {
+    public AudioSource PortalDown;
+    // Use this for initialization
+    void Start () {
+
         VictoryOn = false;
         Op = false;
         VicMesRen = GetComponent<MeshRenderer>();
@@ -23,13 +25,19 @@ public class Victory : MonoBehaviour {
             Op = false;
             VicMesRen.material = closed;
         }
+        if (P.score == 30)
+        {
+            PortalDown.Play();
+        }
+
         if (P.score >= 30)
         {
+            PortalDown.Play();
             Op = true;
             VicMesRen.material = open;
         }
-	
-	}
+
+    }
 
     private void OnTriggerEnter(Collider collider)
     {

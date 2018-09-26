@@ -20,7 +20,7 @@ public class LevelUI : MonoBehaviour {
         Stamcharge = false;
         TM = GameObject.Find("Time").GetComponent<Text>();
         score = GameObject.Find("Score").GetComponent<Text>();
-        staminaImg = GameObject.Find("stamima").GetComponent<Image>();
+        staminaImg = GameObject.Find("stamina").GetComponent<Image>();
     }
 	
 	// Update is called once per frame
@@ -76,9 +76,9 @@ public class LevelUI : MonoBehaviour {
         if (stamina.GetComponent<Image>().fillAmount == 0)
         {
             staminaImg.material = stamdown;
-            //plr.box.SetActive(false);
-            //plr.inbox = false;
-            //plr.canbox = false;
+            plr.box.SetActive(false);
+            plr.inbox = false;
+            plr.canbox = false;
         }
         if (stamina.GetComponent<Image>().fillAmount == 1)
         {
