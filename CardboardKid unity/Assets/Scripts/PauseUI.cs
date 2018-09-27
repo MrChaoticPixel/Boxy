@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseUI : MonoBehaviour {
 
     public GoogleAnalyticsV4 G4;
-    public GameObject PauseMenuUI, ControlsUI, QuitToMainUI, MainPauseUI;
+    public GameObject PauseMenuUI, ControlsUI, QuitToMainUI, MainPauseUI, InfoUI;
     public bool IsPaused;
 
 	// Use this for initialization
@@ -21,7 +21,21 @@ public class PauseUI : MonoBehaviour {
 
 
     }
+    public void HandleHowtoPlay()
+    {
+        G4.LogEvent("PressButton", "HowtoPlayButton", "HasPressed", 1);
 
+        // Builder Hit with all Event parameters.
+        G4.LogEvent(new EventHitBuilder()
+            .SetEventCategory("PressButton")
+            .SetEventAction("HowtoPlayButton")
+            .SetEventLabel("HasPressed")
+            .SetEventValue(1));
+
+        Debug.Log("Sent");
+        MainPauseUI.SetActive(false);
+        InfoUI.SetActive(true);
+    }
     public void HandleBackPause()
     {
         G4.LogEvent("PressButton", "BackPauseButton", "HasPressed", 1);
@@ -36,6 +50,7 @@ public class PauseUI : MonoBehaviour {
         Debug.Log("Sent");
         ControlsUI.SetActive(false);
         QuitToMainUI.SetActive(false);
+        InfoUI.SetActive(false);
         MainPauseUI.SetActive(true);
     }
 

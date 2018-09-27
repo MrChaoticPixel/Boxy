@@ -64,7 +64,7 @@ public class LevelUI : MonoBehaviour {
             if (plr.inbox == true)
             {
                 stamina.SetActive(true);
-                stamina.GetComponent<Image>().fillAmount = stamina.GetComponent<Image>().fillAmount - 0.004f;
+                stamina.GetComponent<Image>().fillAmount = stamina.GetComponent<Image>().fillAmount - 0.008f;
             }
             if (plr.inbox == false)
             {

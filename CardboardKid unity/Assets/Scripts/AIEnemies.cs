@@ -95,8 +95,8 @@ public class AIEnemies : MonoBehaviour
             
             if (playerVis == true)
             {
-                NMA.acceleration = 150;
-                NMA.speed = 60;
+                NMA.acceleration = 300;
+                NMA.speed = 80;
                 NMA.SetDestination(player.transform.position);
 
             }
@@ -136,7 +136,7 @@ public class AIEnemies : MonoBehaviour
 
         }
     }
-    public void OnTriggerStay(Collider collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "EnemyAI")
         {

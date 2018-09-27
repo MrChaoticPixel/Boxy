@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
     public bool canmov, GamepadMode, KeyboardMode, inbox, canbox, GO;
     public AIEnemies AI1, AI2, AI3, AI4, AI5, AI6, AI7, AI8, AI9, AI10, AI11, AI12;
     public RectTransform playericon;
-    public AudioSource Detect, coins;
+    public AudioSource Detect, coins, Portal;
     public CapsuleCollider playercol;
 
 
@@ -26,8 +26,8 @@ public class Player : MonoBehaviour {
         score = 0;
         inbox = false;
         box.SetActive(false);
-        KeyboardMode = false;
-        GamepadMode = true;
+        KeyboardMode = true;
+        GamepadMode = false;
         canmov = false;
         Invoke("StartMovDelay", 3);
         horizontalSpeed = 2.0F;
@@ -51,18 +51,17 @@ public class Player : MonoBehaviour {
         HandleCam();
         HandleMov();
         HandleBox();
+
 	}
     public void HandleControllerMode()
     {
         if (GamepadMode == false)
         {
-           // ControllerIcon.SetActive(true);
             GamepadMode = true;
             KeyboardMode = false;
         }
         else
         {
-           // ControllerIcon.SetActive(false);
             GamepadMode = false;
             KeyboardMode = true;
         }
@@ -203,6 +202,10 @@ public class Player : MonoBehaviour {
             coins.Play();
             Destroy(collision.gameObject);
             score = score + 1;
+            if(score == 30)
+            {
+                Portal.Play();
+            }
         }
         if (collision.gameObject.name == "Boundry1")
         {

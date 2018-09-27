@@ -7,10 +7,8 @@ public class Victory : MonoBehaviour {
     public MeshRenderer VicMesRen;
     public Material closed, open;
     public bool Op, VictoryOn;
-    public AudioSource PortalDown;
     // Use this for initialization
     void Start () {
-
         VictoryOn = false;
         Op = false;
         VicMesRen = GetComponent<MeshRenderer>();
@@ -18,21 +16,15 @@ public class Victory : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (P.score < 30)
         {
             Op = false;
             VicMesRen.material = closed;
         }
-        if (P.score == 30)
-        {
-            PortalDown.Play();
-        }
-
         if (P.score >= 30)
         {
-            PortalDown.Play();
             Op = true;
             VicMesRen.material = open;
         }
