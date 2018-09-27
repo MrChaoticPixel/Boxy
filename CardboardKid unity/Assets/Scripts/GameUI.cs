@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameUI : MonoBehaviour {
 
     public GoogleAnalyticsV4 G4;
-    public GameObject StartMenu, ControlsMenu;
+    public GameObject StartMenu, ControlsMenu, HowUI;
     
 
 	// Use this for initialization
@@ -37,6 +37,7 @@ public class GameUI : MonoBehaviour {
             .SetEventValue(1));
 
         Debug.Log("Sent");
+        HowUI.SetActive(false);
         ControlsMenu.SetActive(false);
         StartMenu.SetActive(true);
     }
@@ -69,6 +70,21 @@ public class GameUI : MonoBehaviour {
 
         Debug.Log("Sent");
         ControlsMenu.SetActive(true);
+        StartMenu.SetActive(false);
+    }
+    public void HandleHowto()
+    {
+        G4.LogEvent("PressButton", "HowtoMainButton", "HasPressed", 1);
+
+        // Builder Hit with all Event parameters.
+        G4.LogEvent(new EventHitBuilder()
+            .SetEventCategory("PressButton")
+            .SetEventAction("HowtoMainButton")
+            .SetEventLabel("HasPressed")
+            .SetEventValue(1));
+
+        Debug.Log("Sent");
+        HowUI.SetActive(true);
         StartMenu.SetActive(false);
     }
 

@@ -7,8 +7,8 @@ public class Victory : MonoBehaviour {
     public MeshRenderer VicMesRen;
     public Material closed, open;
     public bool Op, VictoryOn;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         VictoryOn = false;
         Op = false;
         VicMesRen = GetComponent<MeshRenderer>();
@@ -16,7 +16,7 @@ public class Victory : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (P.score < 30)
         {
@@ -28,8 +28,8 @@ public class Victory : MonoBehaviour {
             Op = true;
             VicMesRen.material = open;
         }
-	
-	}
+
+    }
 
     private void OnTriggerEnter(Collider collider)
     {

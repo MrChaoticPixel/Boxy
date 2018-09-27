@@ -44,6 +44,7 @@ public class AIEnemies : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (playS.inbox == true)
         {
             Physics.IgnoreCollision(GameObject.Find("MainPlayer").GetComponent <CapsuleCollider>(), GetComponent<Collider>());
@@ -59,13 +60,11 @@ public class AIEnemies : MonoBehaviour
         }
             if (Mode == 0)
         {
-            chasing = false;
             RoamMd = true;
             ChaseMd = false;
         }
         if (Mode == 1)
         {
-            chasing = true;
             RoamMd = false;
             ChaseMd = true;
         }
@@ -96,9 +95,8 @@ public class AIEnemies : MonoBehaviour
             
             if (playerVis == true)
             {
-                
-                NMA.acceleration = 50;
-                NMA.speed = 150;
+                NMA.acceleration = 300;
+                NMA.speed = 80;
                 NMA.SetDestination(player.transform.position);
 
             }
@@ -138,7 +136,7 @@ public class AIEnemies : MonoBehaviour
 
         }
     }
-    public void OnCollisionStay(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "EnemyAI")
         {
