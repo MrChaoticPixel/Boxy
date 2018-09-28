@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-
+    public GoogleAnalyticsV4 G4;
     private Rigidbody PlayerRB;
     public float spd, verticalSpeed, horizontalSpeed, hAxis, vAxis, JoyHaxis, JoyVaxis, h, v, Jh, Jv, score;
     public GameObject target, box, player, ControllerIcon;
@@ -552,13 +552,23 @@ public class Player : MonoBehaviour {
         if (collision.gameObject.tag == "Spotlight")
         {
             if (inbox == false)
-            {
+            { 
                 Gamover.Play();
                 canbox = false;
                 canmov = false;
                 GO = true;
                 Time.timeScale = 0;
                 Debug.Log("YouLose " + "Time: " + Timer.TimeScoreHours + ":" + Timer.TimeScoreMin + ":" + Timer.TimeScoreSeconds.ToString("f2"));
+                G4.LogEvent("finalscore", "score", "gameover", 1);
+
+                // Builder Hit with all Event parameters.
+                G4.LogEvent(new EventHitBuilder()
+                    .SetEventCategory("finalscore")
+                    .SetEventAction("score")
+                    .SetEventLabel("gameover")
+                    .SetEventValue(1));
+
+                Debug.Log("Sent");
             }
             
         }

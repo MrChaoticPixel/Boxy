@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Victory : MonoBehaviour {
+
+    public GoogleAnalyticsV4 G4;
     public Player P;
     public MeshRenderer VicMesRen;
     public Material closed, open;
@@ -43,6 +45,16 @@ public class Victory : MonoBehaviour {
                 P.canbox = false;
                 Time.timeScale = 0;
                 Debug.Log("YouWin " + "Time: " + Timer.TimeScoreHours + ":" + Timer.TimeScoreMin + ":" + Timer.TimeScoreSeconds.ToString("f2"));
+                G4.LogEvent("finalscore", "score", "gamevictory", 1);
+
+                // Builder Hit with all Event parameters.
+                G4.LogEvent(new EventHitBuilder()
+                    .SetEventCategory("finalscore")
+                    .SetEventAction("score")
+                    .SetEventLabel("gamevictory")
+                    .SetEventValue(1));
+
+                Debug.Log("Sent");
             }
         
         }

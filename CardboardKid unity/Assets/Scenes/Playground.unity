@@ -6522,6 +6522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41bb7ff2c34b8db45833dbc31d827cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  G4: {fileID: 0}
   P: {fileID: 1574610936}
   VicMesRen: {fileID: 0}
   closed: {fileID: 2100000, guid: 32c5316195c61924aa85a74965e84c30, type: 2}
@@ -14774,6 +14775,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114531908067335576, guid: bbc182e4479ba4d21ad61ccd1ffc0944,
+        type: 2}
+      propertyPath: androidTrackingCode
+      value: UA-123866461-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531908067335576, guid: bbc182e4479ba4d21ad61ccd1ffc0944,
+        type: 2}
+      propertyPath: IOSTrackingCode
+      value: UA-123866461-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531908067335576, guid: bbc182e4479ba4d21ad61ccd1ffc0944,
+        type: 2}
+      propertyPath: otherTrackingCode
+      value: UA-123866461-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531908067335576, guid: bbc182e4479ba4d21ad61ccd1ffc0944,
+        type: 2}
+      propertyPath: productName
+      value: QJCardboard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbc182e4479ba4d21ad61ccd1ffc0944, type: 2}
   m_IsPrefabParent: 0
@@ -15522,6 +15543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889a37569a564d7499b4afc38e96f144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  G4: {fileID: 0}
   spd: 0
   verticalSpeed: 2
   horizontalSpeed: 2
