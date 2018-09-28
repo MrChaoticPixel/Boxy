@@ -12,22 +12,23 @@ public class Player : MonoBehaviour {
     public bool canmov, GamepadMode, KeyboardMode, inbox, canbox, GO;
     public AIEnemies AI1, AI2, AI3, AI4, AI5, AI6, AI7, AI8, AI9, AI10, AI11, AI12;
     public RectTransform playericon;
-    public AudioSource Detect, coins, Portal;
+    public AudioSource Detect, coins, Portal, Gamover;
     public CapsuleCollider playercol;
+    public Animator anim;
 
 
     // Use this for initialization
     void Start ()
     {
+        anim = GetComponent<Animator>();
         playercol = GetComponent<CapsuleCollider>();
         Detect = GetComponent<AudioSource>();
         GO = false;
         canbox = false;
         score = 0;
         inbox = false;
-        box.SetActive(false);
-        KeyboardMode = true;
-        GamepadMode = false;
+        KeyboardMode = false;
+        GamepadMode = true;
         canmov = false;
         Invoke("StartMovDelay", 3);
         horizontalSpeed = 2.0F;
@@ -77,14 +78,15 @@ public class Player : MonoBehaviour {
                 {
                     if (inbox == false)
                     {
-                        
-                        box.SetActive(true);
+                        anim.Play("Box");
+                        anim.SetBool("On", true);
+                        canmov = false;
                         inbox = true;
                     }
                     else
                     {
-                        
-                        box.SetActive(false);
+                        anim.SetBool("On", false);
+                        canmov = true;
                         inbox = false;
                     }
                 }
@@ -100,12 +102,13 @@ public class Player : MonoBehaviour {
                 {
                     if (inbox == false)
                     {
-                        box.SetActive(true);
+                        anim.Play("Box");
+                        anim.SetBool("On", true);
                         inbox = true;
                     }
                     else
                     {
-                        box.SetActive(false);
+                        anim.SetBool("On", false);
                         inbox = false;
                     }
                 }
@@ -148,18 +151,34 @@ public class Player : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.W))
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.forward * (spd) * Time.deltaTime);
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.left * (spd) * Time.deltaTime);
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.back * (spd) * Time.deltaTime);
                 }
                 if (Input.GetKey(KeyCode.D))
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.right * (spd) * Time.deltaTime);
                 }
             }
@@ -170,18 +189,34 @@ public class Player : MonoBehaviour {
             {
                 if (Input.GetAxis("JoyHor") == -1)
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.left * (spd) * Time.deltaTime);
                 }
                 if (Input.GetAxis("JoyVer") == -1)
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.forward * (spd) * Time.deltaTime);
                 }
                 if (Input.GetAxis("JoyVer") == 1)
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.back * (spd) * Time.deltaTime);
                 }
                 if (Input.GetAxis("JoyHor") == 1)
                 {
+                    if (inbox == false)
+                    {
+                        anim.Play("Walk");
+                    }
                     transform.Translate(Vector3.right * (spd) * Time.deltaTime);
                 }
             }
@@ -518,6 +553,7 @@ public class Player : MonoBehaviour {
         {
             if (inbox == false)
             {
+                Gamover.Play();
                 canbox = false;
                 canmov = false;
                 GO = true;

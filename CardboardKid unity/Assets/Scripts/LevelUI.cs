@@ -76,7 +76,7 @@ public class LevelUI : MonoBehaviour {
         if (stamina.GetComponent<Image>().fillAmount == 0)
         {
             staminaImg.material = stamdown;
-            plr.box.SetActive(false);
+            plr.anim.SetBool("On", false);
             plr.inbox = false;
             plr.canbox = false;
         }

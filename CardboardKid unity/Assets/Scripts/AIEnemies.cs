@@ -47,17 +47,22 @@ public class AIEnemies : MonoBehaviour
         
         if (playS.inbox == true)
         {
-            Physics.IgnoreCollision(GameObject.Find("MainPlayer").GetComponent <CapsuleCollider>(), GetComponent<Collider>());
-        }
-        NavMeshHit hit;
-        if (!NMA.Raycast(player.position, out hit))
-        {
-            playerVis = true;
-        }
-        else
-        {
+            ChaseMd = false;
             playerVis = false;
+            Physics.IgnoreCollision(GameObject.Find("Player").GetComponent <BoxCollider>(), GetComponent<Collider>());
         }
+            NavMeshHit hit;
+            if (!NMA.Raycast(player.position, out hit))
+            {
+                if (playS.inbox == false)
+                {
+                    playerVis = true;
+                }
+            }
+            else
+            {
+                playerVis = false;
+            }
             if (Mode == 0)
         {
             RoamMd = true;
@@ -90,29 +95,29 @@ public class AIEnemies : MonoBehaviour
         if (ChaseMd == true)
         {
             
-            SelfMR.material = Red;
-            transform.LookAt(player);
-            
             if (playerVis == true)
             {
+                SelfMR.material = Red;
+                transform.LookAt(player);
                 NMA.acceleration = 300;
                 NMA.speed = 80;
                 NMA.SetDestination(player.transform.position);
 
             }
-            if (ChaseMd == false)
+            else
             {
-                
-                Mode = 3;
-                Invoke("WaitTime", 0.5f);
+                SelfMR.material = Blue;
+                NMA.speed = 60;
+                NMA.acceleration = 20;
+                int d = Random.Range(0, wps.Length);
+                NMA.SetDestination(wps[d].transform.position);
             }
         }
-        else
+        if (ChaseMd == false)
         {
           
-            SelfMR.material = Blue;
-            NMA.speed = 60;
-            NMA.acceleration = 20;
+           
+
         }
     }
 

@@ -7,6 +7,7 @@ public class Victory : MonoBehaviour {
     public MeshRenderer VicMesRen;
     public Material closed, open;
     public bool Op, VictoryOn;
+    public AudioSource Vic;
     // Use this for initialization
     void Start () {
         VictoryOn = false;
@@ -37,6 +38,7 @@ public class Victory : MonoBehaviour {
         {
            if (Op == true)
             {
+                Vic.Play();
                 VictoryOn = true;
                 P.canbox = false;
                 Time.timeScale = 0;
