@@ -115,8 +115,8 @@ public class AIEnemies : MonoBehaviour
         }
         if (ChaseMd == false)
         {
-          
-           
+
+            SelfMR.material = Blue;
 
         }
     }
